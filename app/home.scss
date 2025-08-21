@@ -1,0 +1,107 @@
+@import "./vars.scss";
+
+.home {
+  padding: 20px 80px;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+
+     @media (max-width: $mobile) {
+            grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+     }
+  }
+
+  &__header {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+
+    @media (max-width: $mobile) {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  &__sorting {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: $mobile) {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+
+    &--text {
+      color: $text-color;
+      font-size: $font-size-base;
+      margin-right: $spacing-md;
+
+      @media (max-width: $mobile) {
+        margin-right: 0;
+        text-align: center;
+      }
+    }
+
+    &--link {
+      color: $primary-color;
+      text-decoration: none;
+      padding: $spacing-sm $spacing-md;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $primary-color;
+        color: $background-color;
+      }
+
+      @media (max-width: $mobile) {
+        padding: $spacing-sm;
+        font-size: $font-size-base;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: center;
+    margin-top: $spacing-lg;
+
+    @media (max-width: $mobile) {
+      flex-wrap: wrap;
+    }
+
+    &--item {
+      color: $primary-color;
+      text-decoration: none;
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid $primary-color;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &.active {
+        background-color: $primary-color;
+        color: $background-color;
+      }
+
+      &:hover {
+        background-color: $hover-color;
+        color: $background-color;
+      }
+
+      @media (max-width: $mobile) {
+        padding: $spacing-sm;
+        font-size: $font-size-base - 2px;
+      }
+    }
+  }
+}
