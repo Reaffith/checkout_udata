@@ -1,95 +1,68 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { notFound } from "next/navigation";
+import { getProducts } from "./functions/api";
+import { ProductsResponse } from "./types/ProductsResponse";
+import { MemoProductCard } from "./components/ProductCard/ProductCard";
+import "./home.scss";
+import Link from "next/link";
 
-export default function Home() {
+interface PageProps {
+  searchParams: { page?: string; order?: "asc" | "desc" };
+}
+
+export default async function Home({ searchParams }: PageProps) {
+  const page = searchParams.page ? +searchParams.page : 1;
+  const order = searchParams.order || undefined;
+
+  let apiCallResult: ProductsResponse | undefined;
+
+  try {
+    apiCallResult = await getProducts(page, order);
+  } catch {
+    return notFound();
+  }
+
+  const products = apiCallResult.products;
+  const pages = Array.from(
+    { length: Math.ceil(apiCallResult.total / 30) },
+    (_, k) => k + 1
+  );
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className="home">
+      <h1 className="home__header">Product List</h1>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className="home__sorting">
+        <p className="home__sorting--text">Sort by</p>
+
+        <Link className="home__sorting--link" href={{ pathname: "/", query: { page: page.toString(), order: "asc" } }}>
+          Price: Low to High
+        </Link>
+
+        <Link className="home__sorting--link" href={{ pathname: "/", query: { page: page.toString(), order: "desc" } }}>
+          Price: High to Low
+        </Link>
+      </div>
+
+      <div className="home__list">
+        {products.map((product) => (
+          <MemoProductCard product={product} key={product.id} />
+        ))}
+      </div>
+
+      <div className="home__pagination">
+        {pages.map((page) => (
+          <Link
+            href={{
+              pathname: "/",
+              query: { page: page.toString(), order: order || undefined },
+            }}
+            className="home__pagination--item"
+            key={page}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            {page}
+          </Link>
+        ))}
+      </div>
+    </main>
   );
 }
