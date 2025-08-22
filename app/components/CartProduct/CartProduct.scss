@@ -1,0 +1,116 @@
+@import '../../vars.scss';
+
+.cartProduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: $background-color;
+  margin-bottom: $spacing-md;
+
+  @media (max-width: $mobile) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: $spacing-sm;
+  }
+}
+
+.cartProduct__info {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.cartProduct__info--image {
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.cartProduct__info--block {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.cartProduct__info--block--price {
+  color: $primary-color;
+  font-size: $font-size-lg;
+  font-weight: 700;
+}
+
+.cartProduct__info--block--header {
+  color: $text-color;
+  font-size: $font-size-base;
+  font-weight: 500;
+}
+
+.cartProduct__controls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  @media (max-width: $mobile) {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+}
+
+.cartProduct__controls--quanity {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.cartProduct__controls--quanity--button {
+  background-color: $primary-color;
+  color: $background-color;
+  border: none;
+  padding: $spacing-sm;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+
+  @media (max-width: $mobile) {
+    padding: $spacing-sm - 2px;
+    font-size: $font-size-base - 2px;
+  }
+}
+
+.cartProduct__controls--quanity--input {
+  width: 60px;
+  padding: $spacing-sm;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  text-align: center;
+
+  @media (max-width: $mobile) {
+    width: 50px;
+    padding: $spacing-sm - 2px;
+    font-size: $font-size-base - 2px;
+  }
+}
+
+.cartProduct__controls--delete {
+  background-color: #ff4444;
+  color: $background-color;
+  border: none;
+  padding: $spacing-sm;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken(#ff4444, 10%);
+  }
+
+  @media (max-width: $mobile) {
+    padding: $spacing-sm - 2px;
+    font-size: $font-size-base - 2px;
+  }
+}
