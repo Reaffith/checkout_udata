@@ -1,0 +1,85 @@
+@import "../vars.scss";
+.cart {
+  padding: $spacing-md;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: $mobile) {
+    padding: $spacing-sm;
+  }
+}
+
+.cart_products {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.cart_promo {
+  margin-top: $spacing-lg;
+  padding: $spacing-md;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  @media (max-width: $mobile) {
+    padding: $spacing-sm;
+  }
+}
+
+.cart_promo-total,
+.cart_promo-discount,
+.cart_promo-final {
+  color: $text-color;
+  font-size: $font-size-base;
+  font-weight: 500;
+
+  @media (max-width: $mobile) {
+    font-size: $font-size-base - 2px;
+  }
+}
+
+.cart_promo-total {
+  font-weight: 700;
+}
+
+.cart_promo-input {
+  padding: $spacing-sm;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: $font-size-base;
+
+  @media (max-width: $mobile) {
+    padding: $spacing-sm - 2px;
+    font-size: $font-size-base - 2px;
+    width: 100%;
+  }
+}
+
+.cart_promo-total-button {
+  background-color: $primary-color;
+  color: $background-color;
+  border: none;
+  padding: $spacing-sm $spacing-md;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+
+  @media (max-width: $mobile) {
+    padding: $spacing-sm - 2px;
+    font-size: $font-size-base - 2px;
+    width: 100%;
+  }
+}
