@@ -1,0 +1,95 @@
+@import "../../vars.scss";
+
+.product {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-md;
+
+  @media (max-width: $mobile) {
+    padding: $spacing-sm;
+  }
+
+  &__header {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: $mobile) {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-md;
+    }
+  }
+  &__details {
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: $background-color;
+
+    &--description {
+      color: $text-color;
+      font-size: $font-size-base;
+      margin-bottom: $spacing-md;
+    }
+
+    &--price {
+      color: $primary-color;
+      font-size: $font-size-lg;
+      font-weight: 700;
+      margin-bottom: $spacing-md;
+    }
+
+    &--brand {
+      color: $text-color;
+      font-size: $font-size-base;
+      font-style: italic;
+    }
+  }
+
+  &__reviews {
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: $background-color;
+    &-header {
+      font-size: $font-size-lg;
+      font-weight: 700;
+      color: $text-color;
+      margin-bottom: $spacing-md;
+    }
+
+    &--item {
+      margin-bottom: $spacing-md;
+      padding: $spacing-sm;
+      border-bottom: 1px solid #e0e0e0;
+
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+    }
+
+    &--rating {
+      color: $primary-color;
+      font-weight: 500;
+      margin-bottom: $spacing-sm;
+    }
+
+    &--comment {
+      color: $text-color;
+      margin-bottom: $spacing-sm;
+    }
+
+    &--reviewer {
+      color: #666;
+      font-size: $font-size-base - 2px;
+    }
+
+    &--no-reviews {
+      color: #666;
+      font-style: italic;
+    }
+  }
+}

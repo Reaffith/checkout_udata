@@ -1,0 +1,62 @@
+@import "../../vars.scss";
+
+.images {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+
+  @media (max-width: $mobile) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__all {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    overflow-y: auto;
+    max-width: 150px;
+    max-height: 600px;
+
+    @media (max-width: $mobile) {
+      flex-direction: row;
+      max-width: 100%;
+      justify-content: center;
+    }
+
+    &-item {
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+
+      &:hover,
+      &.active {
+        border-color: $primary-color;
+      }
+
+      @media (max-width: $mobile) {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    &--no-images {
+      color: #666;
+      text-align: center;
+    }
+  }
+
+  &__selected {
+    max-width: 600px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: $mobile) {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
